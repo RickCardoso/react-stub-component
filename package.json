@@ -1,0 +1,41 @@
+{
+  "name": "react-stub-component",
+  "version": "0.1.0",
+  "description": "A StubComponent library for React",
+  "main": "index.tsx",
+  "scripts": {
+    "prebuild": "./scripts/pre-build.sh",
+    "postbuild": "./scripts/post-build.sh",
+    "build": "npm run prebuild && npx tsc && npm run postbuild",
+    "test": "exit 0"
+  },
+  "files": [
+    "build/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RickCardoso/react-stub-component.git"
+  },
+  "keywords": [
+    "stub",
+    "react",
+    "test"
+  ],
+  "author": "RickCardoso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RickCardoso/react-stub-component/issues"
+  },
+  "homepage": "https://github.com/RickCardoso/react-stub-component#readme",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "sinon": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.182",
+    "@types/react": "^18.0.17",
+    "@types/sinon": "^10.0.13",
+    "typescript": "^4.7.4"
+  }
+}
