@@ -9,7 +9,9 @@ jest.spyOn(sinon, 'replace');
 jest.spyOn(UtilsModule, 'getPropValue');
 jest.spyOn(UtilsModule, 'fireMockEvent');
 
-const SubComponent = (props?: Record<string, unknown>) => <>Original sub component</>;
+const SubComponent = (props?: Record<string, unknown>) => (
+  <>Original sub component with props: {JSON.stringify(props)}</>
+);
 const SubComponentModule = {
   SubComponent,
 };
