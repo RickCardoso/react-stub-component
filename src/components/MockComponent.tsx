@@ -5,9 +5,6 @@ import map from 'lodash/map';
 import forEach from 'lodash/forEach';
 import toArray from 'lodash/toArray';
 import isUndefined from 'lodash/isUndefined';
-import isNull from 'lodash/isNull';
-import isArray from 'lodash/isArray';
-import isObject from 'lodash/isObject';
 import reduce from 'lodash/reduce';
 import { getEventName, getDataPropName, mockComponentTestId } from '../utils';
 
@@ -48,31 +45,13 @@ export const MockComponent = ({ uniqueName, ...props }: MockComponentProps): Rea
         return result;
       }
 
-      // if (isFunction(value)) {
-      //   return {
-      //     ...result,
-      //     [dataProp]: key
-      //   };
-      // }
-      //
       if (isUndefined(value)) {
         return {
           ...result,
           [dataProp]: 'undefined',
         };
       }
-      //
-      // if (isNull(value) || isObject(value) || isArray(value)) {
-      //   return {
-      //     ...result,
-      //     [dataProp]: JSON.stringify(value)
-      //   }
-      // }
-      //
-      // return {
-      //   ...result,
-      //   [dataProp]: value.toString(),
-      // }
+
       return {
         ...result,
         [dataProp]: JSON.stringify(value),
