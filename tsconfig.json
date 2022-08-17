@@ -8,9 +8,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "jsx": "react-jsx",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "outDir": "./build"
   },
-  "exclude": ["node_modules"],
-  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "src/**/*.spec.*"],
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
 }

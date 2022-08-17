@@ -1,6 +1,6 @@
 {
-  "name": "temp-react-stub-component",
-  "version": "0.1.17",
+  "name": "react-stub-component",
+  "version": "1.0.0-rc.5",
   "description": "A StubComponent library for React",
   "main": "build/index.js",
   "types": "build/index.d.ts",
