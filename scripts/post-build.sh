@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm -f build/js/index.ts
+rm -f build/index.tsx

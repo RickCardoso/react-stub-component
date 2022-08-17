@@ -3,12 +3,14 @@
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext", "es6"],
     "allowSyntheticDefaultImports": true,
-    "module": "esnext",
+    "declaration": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
     "moduleResolution": "node",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "baseUrl": "./",
     "outDir": "./build"
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
 }
