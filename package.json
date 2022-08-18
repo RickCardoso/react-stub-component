@@ -1,6 +1,6 @@
 {
   "name": "react-stub-component",
-  "version": "1.0.0-rc.6",
+  "version": "1.0.0",
   "description": "A StubComponent library for React",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -10,7 +10,7 @@
     "build": "npm run prebuild && npx tsc && npm run postbuild",
     "publish:stable": "npm run build && npm publish",
     "publish:rc": "npm run build && npm publish --tag rc",
-    "test": "exit 0"
+    "test": "jest"
   },
   "files": [
     "build/"
@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/RickCardoso/react-stub-component#readme",
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^17.0.2"
   },
   "dependencies": {
     "lodash": "^4.17.21",
