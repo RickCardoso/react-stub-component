@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useEffect, useMemo } from 'react';
+import { ReactElement, useCallback, useEffect, useMemo, isValidElement } from 'react';
 import pickBy from 'lodash/pickBy';
 import isFunction from 'lodash/isFunction';
 import map from 'lodash/map';
@@ -6,7 +6,8 @@ import forEach from 'lodash/forEach';
 import toArray from 'lodash/toArray';
 import isUndefined from 'lodash/isUndefined';
 import reduce from 'lodash/reduce';
-import { getEventName, getDataPropName, mockComponentTestId } from '../utils';
+import omitBy from 'lodash/omitBy';
+import { getEventName, getDataPropName, mockComponentTestId, reactNodeTestId } from '../utils';
 
 export type MockComponentProps = {
   uniqueName: string;
@@ -37,13 +38,9 @@ export const MockComponent = ({ uniqueName, ...props }: MockComponentProps): Rea
   }, [functionProps, eventName]);
 
   const dataProps = reduce(
-    props,
+    omitBy(omitBy(props, isFunction), isValidElement),
     (result, value, key) => {
       const dataProp = getDataPropName(key);
-
-      if (key === 'children') {
-        return result;
-      }
 
       if (isUndefined(value)) {
         return {
@@ -60,9 +57,15 @@ export const MockComponent = ({ uniqueName, ...props }: MockComponentProps): Rea
     {},
   );
 
+  const reactNodeProps = useMemo(() => pickBy(props, isValidElement), [props]);
+
   return (
     <span data-testid={mockComponentTestId(uniqueName)} {...dataProps}>
-      {props.children}
+      {map(reactNodeProps, (reactNode, propName) => (
+        <span key={propName} data-testid={reactNodeTestId(uniqueName, propName)}>
+          {reactNode}
+        </span>
+      ))}
     </span>
   );
 };

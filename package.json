@@ -1,6 +1,6 @@
 {
   "name": "react-stub-component",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.6",
   "description": "A StubComponent library for React",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -8,6 +8,8 @@
     "prebuild": "./scripts/pre-build.sh",
     "postbuild": "./scripts/post-build.sh",
     "build": "npm run prebuild && npx tsc && npm run postbuild",
+    "publish:stable": "npm run build && npm publish",
+    "publish:rc": "npm run build && npm publish --tag rc",
     "test": "exit 0"
   },
   "files": [

@@ -68,6 +68,22 @@ describe('stubComponent', () => {
       });
     });
 
+    describe('when children are passed', () => {
+      it('should render the ReactNode with a provided test id', () => {
+        const { getReactNodePropTestId } = stubComponent(SubComponentModule, 'SubComponent');
+        const { getByTestId } = setup({ children: <>children</> });
+        expect(getByTestId(getReactNodePropTestId('children'))).toHaveTextContent('children');
+      });
+    });
+
+    describe('when ReactNode prop is passed', () => {
+      it('should render the ReactNode with a provided test id', () => {
+        const { getReactNodePropTestId } = stubComponent(SubComponentModule, 'SubComponent');
+        const { getByTestId } = setup({ footer: <footer>a footer</footer> });
+        expect(getByTestId(getReactNodePropTestId('footer'))).toHaveTextContent('a footer');
+      });
+    });
+
     describe('when function prop is passed', () => {
       it('should return custom event function that triggers the function prop', () => {
         const { fireMockEvent } = stubComponent(SubComponentModule, 'SubComponent');

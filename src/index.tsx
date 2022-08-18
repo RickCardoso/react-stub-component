@@ -1,13 +1,14 @@
 import sinon from 'sinon';
 import type { ReactElement } from 'react';
 import { MockComponent } from './components/MockComponent';
-import { fireMockEvent, getPropValue, mockComponentTestId } from './utils';
+import { fireMockEvent, getPropValue, getReactNodePropTestId, mockComponentTestId } from './utils';
 
 export const stubComponent = (
   module: any,
   componentName: string,
 ): {
   getPropValue: (propName: string) => any;
+  getReactNodePropTestId: (propName: string) => any;
   fireMockEvent: (propName: string, ...params: any[]) => void;
   stubTestId: string;
   restoreStubs: () => void;
@@ -22,6 +23,7 @@ export const stubComponent = (
 
   return {
     getPropValue: getPropValue(uniqueName),
+    getReactNodePropTestId: getReactNodePropTestId(uniqueName),
     fireMockEvent: fireMockEvent(uniqueName),
     stubTestId: mockComponentTestId(uniqueName),
     restoreStubs: sinon.restore,
