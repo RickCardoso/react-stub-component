@@ -9,6 +9,7 @@ jest.spyOn(sinon, 'replace');
 jest.spyOn(UtilsModule, 'getPropValue');
 jest.spyOn(UtilsModule, 'fireMockEvent');
 
+const onClick = jest.fn();
 const SubComponent = (props?: Record<string, unknown>) => (
   <>Original sub component with props: {JSON.stringify(props)}</>
 );
@@ -59,11 +60,20 @@ describe('stubComponent', () => {
       ['objectProp', { foo: 'bar' }],
       ['arrayProp', ['foo', 'bar']],
       ['stringProp', 'foo'],
-    ])('when %s is passed', (propName, propValue) => {
+    ])('when prop %s is passed', (propName, propValue) => {
       it(`should render span with a data-${kebabCase(propName)} as ${propValue}`, () => {
         const { getPropValue } = stubComponent(SubComponentModule, 'SubComponent');
         setup({ [propName]: propValue });
         expect(getPropValue(propName)).toEqual(propValue);
+      });
+    });
+
+    describe('when function prop is passed', () => {
+      it('should return custom event function that triggers the function prop', () => {
+        const { fireMockEvent } = stubComponent(SubComponentModule, 'SubComponent');
+        setup({ onClick });
+        fireMockEvent('onClick', ['foo', { foo: 'bar' }]);
+        expect(onClick).toHaveBeenCalledWith('foo', { foo: 'bar' });
       });
     });
   });
