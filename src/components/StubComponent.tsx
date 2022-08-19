@@ -7,7 +7,7 @@ import toArray from 'lodash/toArray';
 import isUndefined from 'lodash/isUndefined';
 import reduce from 'lodash/reduce';
 import omitBy from 'lodash/omitBy';
-import { getEventName, getDataPropName, mockComponentTestId, reactNodeTestId } from 'utils';
+import { getEventName, getDataPropName, mockComponentTestId, reactNodeTestId } from '../utils';
 
 export type StubComponentProps = {
   uniqueName: string;

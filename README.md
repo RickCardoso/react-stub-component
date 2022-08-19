@@ -33,7 +33,6 @@ Then, with `sinon`, we create a component stub and return the following properti
 - `fireMockEvent: (propName: string, ...params: any[]) => void`: the function you will use to fire a mock event on the stubbed component with parameters
 - `stubTestId: string`: the test id of the stubbed component which you can use to validate if it has been simply rendered
 - `restoreStubs: () => void`: the function you will use to restore the stubs and actually use real components
-- 
 
 ```jsx
 import { stubComponent } from 'react-stub-component';

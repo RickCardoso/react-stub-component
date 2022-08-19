@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import type { ReactElement } from 'react';
-import { StubComponent } from 'components/StubComponent';
-import { fireMockEvent, getPropValue, getReactNodePropTestId, mockComponentTestId } from 'utils';
+import { StubComponent } from './components/StubComponent';
+import { fireMockEvent, getPropValue, getReactNodePropTestId, mockComponentTestId } from './utils';
 
 export const stubComponent = (
   module: any,

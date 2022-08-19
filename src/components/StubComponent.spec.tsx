@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import { StubComponent } from 'components/StubComponent';
-import type { StubComponentProps } from 'components/StubComponent';
+import { StubComponent } from './StubComponent';
+import type { StubComponentProps } from './StubComponent';
 import kebabCase from 'lodash/kebabCase';
 
 const defaultProps = {
