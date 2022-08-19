@@ -7,13 +7,13 @@ import toArray from 'lodash/toArray';
 import isUndefined from 'lodash/isUndefined';
 import reduce from 'lodash/reduce';
 import omitBy from 'lodash/omitBy';
-import { getEventName, getDataPropName, mockComponentTestId, reactNodeTestId } from '../utils';
+import { getEventName, getDataPropName, mockComponentTestId, reactNodeTestId } from 'utils';
 
-export type MockComponentProps = {
+export type StubComponentProps = {
   uniqueName: string;
 } & any;
 
-export const MockComponent = ({ uniqueName, ...props }: MockComponentProps): ReactElement => {
+export const StubComponent = ({ uniqueName, ...props }: StubComponentProps): ReactElement => {
   const functionProps = useMemo(() => pickBy(props, isFunction), [props]);
 
   const eventName = useCallback((eventKey: string): string => getEventName(uniqueName, eventKey), [uniqueName]);

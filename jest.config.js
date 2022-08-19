@@ -3,10 +3,10 @@ module.exports = {
   preset: 'ts-jest',
 
   // A list of paths to directories that Jest should use to search for files in
-  roots: ['<rootDir>', __dirname],
+  roots: ['<rootDir>', 'src'],
 
   // An array of directory names to be searched recursively up from the requiring module's location
-  moduleDirectories: ['node_modules', __dirname],
+  moduleDirectories: ['node_modules', 'src'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],

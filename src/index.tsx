@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import type { ReactElement } from 'react';
-import { MockComponent } from './components/MockComponent';
-import { fireMockEvent, getPropValue, getReactNodePropTestId, mockComponentTestId } from './utils';
+import { StubComponent } from 'components/StubComponent';
+import { fireMockEvent, getPropValue, getReactNodePropTestId, mockComponentTestId } from 'utils';
 
 export const stubComponent = (
   module: any,
@@ -18,7 +18,7 @@ export const stubComponent = (
   sinon.replace<any, typeof module[typeof componentName]>(
     module,
     componentName,
-    ({ ...args }: Record<string, any>): ReactElement => <MockComponent uniqueName={uniqueName} {...args} />,
+    ({ ...args }: Record<string, any>): ReactElement => <StubComponent uniqueName={uniqueName} {...args} />,
   );
 
   return {

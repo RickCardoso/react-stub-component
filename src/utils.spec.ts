@@ -1,4 +1,4 @@
-import { fireMockEvent, getDataPropName, getEventName, getPropValue, mockComponentTestId } from './utils';
+import { fireMockEvent, getDataPropName, getEventName, getPropValue, mockComponentTestId } from 'utils';
 import kebabCase from 'lodash/kebabCase';
 
 describe('utils', () => {
