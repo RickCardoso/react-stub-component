@@ -2,6 +2,7 @@ import sinon from 'sinon';
 import type { ReactElement } from 'react';
 import { StubComponent } from './components/StubComponent';
 import { fireMockEvent, getPropValue, getReactNodePropTestId, mockComponentTestId } from './utils';
+import { v4 as uuidV4 } from 'uuid';
 
 export const stubComponent = (
   module: any,
@@ -13,7 +14,7 @@ export const stubComponent = (
   stubTestId: string;
   restoreStubs: () => void;
 } => {
-  const uniqueName = `${componentName}-${new Date().valueOf()}`;
+  const uniqueName = `${componentName}-${new Date().valueOf()}-${uuidV4()}`;
 
   sinon.replace<any, typeof module[typeof componentName]>(
     module,

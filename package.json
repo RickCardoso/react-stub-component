@@ -35,11 +35,12 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "sinon": "^14.0.0"
+    "sinon": "^14.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.3.0",
+    "@testing-library/react": "^12.1.5",
     "@types/lodash": "^4.14.182",
     "@types/react": "^18.0.17",
     "@types/sinon": "^10.0.13",
