@@ -1,6 +1,6 @@
 {
   "name": "react-stub-component",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A StubComponent library for React",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -35,14 +35,13 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "sinon": "^14.0.0",
-    "uuid": "^8.3.2"
+    "sinon": "^14.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
     "@types/lodash": "^4.14.182",
-    "@types/react": "^18.0.17",
+    "@types/react": "^17.0.48",
     "@types/sinon": "^10.0.13",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",

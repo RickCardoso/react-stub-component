@@ -2,7 +2,7 @@ import sinon from 'sinon';
 import type { ReactElement } from 'react';
 import { StubComponent } from './components/StubComponent';
 import { fireMockEvent, getPropValue, getReactNodePropTestId, mockComponentTestId } from './utils';
-import { v4 as uuidV4 } from 'uuid';
+import kebabCase from 'lodash/kebabCase';
 
 export const stubComponent = (
   module: any,
@@ -14,9 +14,11 @@ export const stubComponent = (
   stubTestId: string;
   restoreStubs: () => void;
 } => {
-  const uniqueName = `${componentName}-${new Date().valueOf()}-${uuidV4()}`;
+  const uniqueName = `${kebabCase(componentName)}-${Date.now().toString(32) + Math.random().toString(16)}`;
 
-  sinon.replace<any, typeof module[typeof componentName]>(
+  const sandbox = sinon.createSandbox();
+
+  sandbox.replace<any, typeof module[typeof componentName]>(
     module,
     componentName,
     ({ ...args }: Record<string, any>): ReactElement => <StubComponent uniqueName={uniqueName} {...args} />,
@@ -27,6 +29,6 @@ export const stubComponent = (
     getReactNodePropTestId: getReactNodePropTestId(uniqueName),
     fireMockEvent: fireMockEvent(uniqueName),
     stubTestId: mockComponentTestId(uniqueName),
-    restoreStubs: sinon.restore,
+    restoreStubs: sandbox.restore,
   };
 };

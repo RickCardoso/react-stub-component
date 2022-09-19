@@ -7,6 +7,8 @@ const defaultProps = {
   uniqueName: 'unique-name',
 };
 
+const FakeReactNode = () => <>fake react node</>;
+
 const setup = (props?: StubComponentProps) => render(<StubComponent {...defaultProps} {...props} />);
 
 describe('<StubComponent />', () => {
@@ -26,6 +28,16 @@ describe('<StubComponent />', () => {
       it(`should render span with a data-${kebabCase(propName)} as ${propValue}`, () => {
         const { container } = setup({ [propName]: propValue });
         expect(container.firstChild).toHaveAttribute(`data-${kebabCase(propName)}`, JSON.stringify(propValue));
+      });
+    });
+
+    describe.each([
+      ['reactNodeProp', <FakeReactNode />, 'fake react node'],
+      ['children', <>children</>, 'children'],
+    ])('when %s is passed', (propName, propValue, propText) => {
+      it(`should render span with rendered ReactNode content: ${propText}`, () => {
+        const { getByTestId } = setup({ uniqueName: 'react-node-test', [propName]: propValue });
+        expect(getByTestId(`react-node-react-node-test-${kebabCase(propName)}`)).toHaveTextContent(propText);
       });
     });
   });

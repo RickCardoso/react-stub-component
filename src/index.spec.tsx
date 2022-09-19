@@ -6,6 +6,7 @@ import * as UtilsModule from './utils';
 import kebabCase from 'lodash/kebabCase';
 
 jest.spyOn(sinon, 'replace');
+jest.spyOn(sinon, 'createSandbox');
 jest.spyOn(UtilsModule, 'getPropValue');
 jest.spyOn(UtilsModule, 'fireMockEvent');
 
@@ -31,19 +32,30 @@ describe('stubComponent', () => {
     sinon.restore();
   });
 
-  it('should call sinon.replace with the correct arguments', () => {
+  it('should call sinon.createSandbox', () => {
     stubComponent(SubComponentModule, 'SubComponent');
-    expect(sinon.replace).toHaveBeenCalledWith(SubComponentModule, 'SubComponent', expect.any(Function));
+    expect(sinon.createSandbox).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call sinon.replace with the correct arguments', () => {
+    const mockReplace = jest.fn();
+
+    (sinon.createSandbox as jest.Mock).mockImplementationOnce(() => ({
+      replace: mockReplace,
+    }));
+
+    stubComponent(SubComponentModule, 'SubComponent');
+    expect(mockReplace).toHaveBeenCalledWith(SubComponentModule, 'SubComponent', expect.any(Function));
   });
 
   it('should call getPropValueConstructor with unique-name', () => {
     stubComponent(SubComponentModule, 'SubComponent');
-    expect(getPropValueConstructor).toHaveBeenCalledWith(expect.stringMatching(new RegExp('SubComponent-\\d+')));
+    expect(getPropValueConstructor).toHaveBeenCalledWith(expect.stringMatching(new RegExp('sub-component-[\\w\\d]+')));
   });
 
   it('should call fireMockEventConstructor with unique-name', () => {
     stubComponent(SubComponentModule, 'SubComponent');
-    expect(fireMockEventConstructor).toHaveBeenCalledWith(expect.stringMatching(new RegExp('SubComponent-\\d+')));
+    expect(fireMockEventConstructor).toHaveBeenCalledWith(expect.stringMatching(new RegExp('sub-component-[\\w\\d]+')));
   });
 
   it('should return getPropValue and fireMockEvent functions', () => {

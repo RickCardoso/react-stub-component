@@ -37,6 +37,11 @@ export const StubComponent = ({ uniqueName, ...props }: StubComponentProps): Rea
     };
   }, [functionProps, eventName]);
 
+  const childrenProp = props.children;
+  if (props.children) {
+    delete props.children;
+  }
+
   const dataProps = reduce(
     omitBy(omitBy(props, isFunction), isValidElement),
     (result, value, key) => {
@@ -66,6 +71,7 @@ export const StubComponent = ({ uniqueName, ...props }: StubComponentProps): Rea
           {reactNode}
         </span>
       ))}
+      <span data-testid={reactNodeTestId(uniqueName, 'children')}>{childrenProp}</span>
     </span>
   );
 };

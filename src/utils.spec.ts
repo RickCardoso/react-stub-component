@@ -4,10 +4,10 @@ import kebabCase from 'lodash/kebabCase';
 describe('utils', () => {
   describe('mockComponentTestId', () => {
     it('should return a string in the correct format', () => {
-      const uniqueName = 'unique-name';
+      const uniqueName = 'component-name-1gdakc7to3888da';
       const testId = mockComponentTestId(uniqueName);
 
-      expect(testId).toBe(`mock-component-${kebabCase(uniqueName)}`);
+      expect(testId).toBe(`mock-component-${uniqueName}`);
     });
   });
 
